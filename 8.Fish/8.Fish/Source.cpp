@@ -34,15 +34,17 @@ char Fish::ocean[10][12] = {
 };
 int main() {
 	srand(unsigned(time(NULL)));
+	int choise = 1;
 	Fish e;
 	Fish t;
-	for (int i = 0; i < 5; i++) {
+	cout << "Enter 0 for exit " << endl;
+	for (; choise!=0;cin>>choise) {
 		system("cls");
+		cout << "Enter 0 for exit " << endl;
 		Fish::Life_ocean();
 		e.Move_fish(e.Get_x(), e.Get_y());
 		t.Move_fish(t.Get_x(), t.Get_y());
 		Fish::Show_ocean();
-		system("pause");
 	}
 
 	

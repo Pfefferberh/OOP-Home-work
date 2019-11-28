@@ -10,16 +10,20 @@ class Fish
 	static int fish_count;
 	int x;
 	int y;
-	int health;
+	int health; 
 
+	void Mind_fish();
+	void Problem_move_fish();
 public:
 	Fish();
 	static void Life_ocean();
 	static void Show_ocean();
+	
+	void Move_fish(int x, int y);
+	
+
 	int Get_x();
 	int Get_y();
-	static void Move_fish(int x, int y);
-
 
 	~Fish();
 };
