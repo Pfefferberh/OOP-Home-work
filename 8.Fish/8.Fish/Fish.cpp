@@ -2,7 +2,7 @@
 
 void Fish::Mind_fish()
 {
-	bool curse_x = rand() % 1;
+	bool curse_x = rand() % 2;
 	bool curse_y = rand() % 2;
 	if (curse_x == true) {
 		this->x++;

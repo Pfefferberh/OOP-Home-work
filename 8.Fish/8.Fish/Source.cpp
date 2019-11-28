@@ -17,7 +17,7 @@
 //росте(здоров’я зменшується).
 //*Удосконалити клас Риба.У &quot; океані&quot; &quot; ростуть&quot; водорості.Риби збільшують своє
 //здоров’я, якщо при переміщенні натрапляють на водорість.
-
+#include <windows.h>
 #include "Fish.h"
 
 char Fish::ocean[10][12] = {
@@ -38,13 +38,15 @@ int main() {
 	Fish e;
 	Fish t;
 	cout << "Enter 0 for exit " << endl;
-	for (; choise!=0;cin>>choise) {
+	for (; choise<25;) {
 		system("cls");
 		cout << "Enter 0 for exit " << endl;
 		Fish::Life_ocean();
 		e.Move_fish(e.Get_x(), e.Get_y());
 		t.Move_fish(t.Get_x(), t.Get_y());
 		Fish::Show_ocean();
+		Sleep(500);
+		choise++;
 	}
 
 	
