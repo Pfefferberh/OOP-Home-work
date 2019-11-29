@@ -20,30 +20,24 @@
 #include <windows.h>
 #include "Fish.h"
 
-char Fish::ocean[10][12] = {
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-  {'|','~','~','~','~','~','~','~','~','~','~','|'},
-};
+char Fish::ocean[10][12];
+
+ int Fish::fish_count=0;
 int main() {
 	srand(unsigned(time(NULL)));
 	int choise = 1;
-	Fish e;
-	Fish t;
+	Fish first;
+	Fish two;
 	cout << "Enter 0 for exit " << endl;
 	for (; choise<25;) {
 		system("cls");
 		cout << "Enter 0 for exit " << endl;
+		cout << "Health "<< first .Get_number_fish()<<" fish : "<<first.Get_health() << endl;
+		cout << "Health "<<two.Get_number_fish()<<" fish : "<<two.Get_health() << endl;
+
 		Fish::Life_ocean();
-		e.Move_fish(e.Get_x(), e.Get_y());
-		t.Move_fish(t.Get_x(), t.Get_y());
+		first.Move_fish(first.Get_x(), first.Get_y());
+		two.Move_fish(two.Get_x(), two.Get_y());
 		Fish::Show_ocean();
 		Sleep(500);
 		choise++;

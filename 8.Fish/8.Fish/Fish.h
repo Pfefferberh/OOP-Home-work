@@ -11,6 +11,7 @@ class Fish
 	int x;
 	int y;
 	int health; 
+	int number_fish; 
 
 	void Mind_fish();
 	void Problem_move_fish();
@@ -24,6 +25,8 @@ public:
 
 	int Get_x();
 	int Get_y();
+	int Get_health();
+	int Get_number_fish();
 
 	~Fish();
 };

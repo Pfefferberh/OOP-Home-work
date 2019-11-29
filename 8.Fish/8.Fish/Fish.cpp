@@ -38,20 +38,30 @@ Fish::Fish()
 {
 	this->x = rand() % 9;
 	this->y = rand() % 11;
+	this->health = 10;
+	fish_count++;
+	this->number_fish = fish_count;
 }
 
 void Fish::Life_ocean()
 {
+	bool plancton;
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 12; j++) {
-			ocean[i][j] = '`';
+			plancton = rand() % 5;
+			if (plancton==false) {
+				ocean[i][j] = '*';
+			}
+			else {
+				ocean[i][j] = '`';
+			}
 		}
 	}
 }
 
 void Fish::Show_ocean()
 {
-	cout << endl << endl << endl << endl;
+	cout <<fish_count<< endl << endl << endl << endl;
 	for (int i = 0; i < 10; i++) {
 		cout << "		";
 		for (int j = 0; j < 12; j++) {
@@ -71,14 +81,31 @@ int Fish::Get_y()
 	return this->y;
 }
 
+int Fish::Get_health()
+{
+	return this->health;
+}
+
+int Fish::Get_number_fish()
+{
+	return this->number_fish;
+}
+
 void Fish::Move_fish(int x,int y)
 {
 	this->Mind_fish();
+	this->health--;
 	this->Problem_move_fish();
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 12; j++) {
-			if (i == x && y == j) {
-				ocean[i][j] = '<';
+	if (this->health>0) {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 12; j++) {
+				if (i == x && y == j && ocean[i][j]!='*') {
+					ocean[i][j] = '<';
+				}
+				else if (i == x && y == j && ocean[i][j] == '*') {
+					ocean[i][j] = '<';
+					this->health += 2;
+				}
 			}
 		}
 	}
