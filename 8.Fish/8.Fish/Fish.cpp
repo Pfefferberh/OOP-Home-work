@@ -2,8 +2,8 @@
 
 void Fish::Mind_random_fish()
 {
-	bool cur_x = rand() % 2;
-	bool cur_y = rand() % 2;
+	bool cur_x = rand() % 3;
+	bool cur_y = rand() % 3;
 	if (cur_x == true) {
 		this->curse_x++;
 	}
@@ -66,7 +66,7 @@ void Fish::Find_plancton(int x, int y)
 
 	for (int i = 0; i < size_x; i++) {
 		for (int j = 0; j < size_x; j++) {
-			if (ocean[i][j] == '*') {
+			if (ocean[i][j] == "* ") {
 				memb_x = x - i;
 				memb_y = y - j;
 				memb_x *= memb_x;
@@ -108,16 +108,14 @@ void Fish::Random_plancton()
 
 void Fish::Set_size(int x, int y)
 {
-	cout << "x " << x << endl;
 	size_x = x;
-	cout << "size_x " << size_x << endl;
 	size_y = y;
 }
 
 void Fish::Set_plancton(int x, int y)
 {
-	plancton_x[x] = rand() % size_x-1;
-	plancton_y[y] = rand() % size_y-1;
+	plancton_x[x] = rand() % size_x-2;
+	plancton_y[y] = rand() % size_y-2;
 }
 
 
@@ -135,9 +133,9 @@ Fish::Fish()
 
 void Fish::Create_ocean()
 {
-	ocean = new char*[size_x];
+	ocean = new string *[size_x];
 	for (int i = 0; i < size_x; i++) {
-		ocean[i] = new char[size_y];
+		ocean[i] = new string[size_y];
 	}
 }
 
@@ -156,34 +154,34 @@ void Fish::Life_ocean()
 		for (int j = 0; j < size_y; j++) {
 //			for (int g = 0; g < 3; g++) {
 				if (i == plancton_x[0] && j == plancton_y[0]) {
-					if (ocean[i][j] != '•') {
-						ocean[i][j] = '*';
+					if (ocean[i][j] != fish_sumbol) {
+						ocean[i][j] = "* ";
 					}
-					else if (ocean[i][j] == '•') {
+					else if (ocean[i][j] == fish_sumbol) {
 						Set_plancton(0,0);
-						ocean[i][j] = '.';
+						ocean[i][j] = ". ";
 					}
 				}
 				else if (i == plancton_x[1] && j == plancton_y[1]) {
-					if (ocean[i][j] != '•') {
-						ocean[i][j] = '*';
+					if (ocean[i][j] != fish_sumbol) {
+						ocean[i][j] = "* ";
 					}
-					else if (ocean[i][j] == '•') {
+					else if (ocean[i][j] == fish_sumbol) {
 						Set_plancton(1, 1);
-						ocean[i][j] = '.';
+						ocean[i][j] = ". ";
 					}
 				}
 				else if (i == plancton_x[2] && j == plancton_y[2]) {
-					if (ocean[i][j] != '•') {
-						ocean[i][j] = '*';
+					if (ocean[i][j] != fish_sumbol) {
+						ocean[i][j] = "* ";
 					}
-					else if (ocean[i][j] == '•') {
+					else if (ocean[i][j] == fish_sumbol) {
 						Set_plancton(2, 2);
-						ocean[i][j] = '.';
+						ocean[i][j] = ". ";
 					}
 				}
 				else {
-					ocean[i][j] = ' ';
+					ocean[i][j] = "  ";
 				}
 //			}
 		}
@@ -215,7 +213,12 @@ int Fish::Get_y()
 
 int Fish::Get_health()
 {
-	return this->health;
+	if (this->health>0) {
+		return this->health;
+	}
+	if (this->health<0) {
+		return 0 ;
+	}
 }
 
 int Fish::Get_number_fish()
@@ -226,15 +229,18 @@ int Fish::Get_number_fish()
 void Fish::Move_fish()
 {
 	//this->Find_plancton();
-	this->Hunger_fish();
+
+	
 	this->health--;
-	this->Problem_move_fish();
+	
 	if (this->health > 0) {
-		if (ocean[this->x][this->y] != '*' && ocean[this->x][this->y] != '•') {
-			ocean[this->x][this->y] = '•';
+		this->Hunger_fish();
+		this->Problem_move_fish();
+		if (ocean[this->x][this->y] != "* " && ocean[this->x][this->y] != fish_sumbol) {
+			ocean[this->x][this->y] = fish_sumbol;
 		}
-		if (ocean[this->x][this->y] == '*' && ocean[this->x][this->y] != '•') {
-			ocean[this->x][this->y] = '•';
+		if (ocean[this->x][this->y] ==  "* " && ocean[this->x][this->y] != fish_sumbol) {
+			ocean[this->x][this->y] = fish_sumbol;
 			this->health += 10;
 			if (this->health <= 10) {
 				this->Find_plancton(Get_x(), Get_y());
@@ -243,7 +249,7 @@ void Fish::Move_fish()
 				this->Mind_random_fish();
 			}
 		}
-		if (ocean[this->x][this->y] == '•') {
+		if (ocean[this->x][this->y] == fish_sumbol) {
 			if (this->health <= 10) {
 				this->Find_plancton(Get_x(), Get_y());
 			}
@@ -251,6 +257,9 @@ void Fish::Move_fish()
 				this->Mind_random_fish();
 			}
 		}
+	}
+	if (this->health < 0) {
+		ocean[this->x][this->y] = "+ ";
 	}
 }
 

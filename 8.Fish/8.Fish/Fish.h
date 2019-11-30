@@ -7,12 +7,13 @@ using namespace std;
 
 class Fish
 {
-	static char **ocean;
+	static string **ocean;
 	static int fish_count;
 	static int plancton_x[3];
 	static int plancton_y[3];
 	static int size_x;
 	static int size_y;
+	static string fish_sumbol; 
 	int x;
 	int y;
 	int curse_x ;
@@ -48,6 +49,7 @@ public:
 	int Get_y();
 	int Get_health();
 	int Get_number_fish();
+	
 
 	~Fish();
  };

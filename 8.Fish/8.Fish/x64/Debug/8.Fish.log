@@ -1,2 +1,3 @@
-﻿  Source.cpp
+﻿  Fish.cpp
+C:\програми\OOP Home work\8.Fish\8.Fish\Fish.cpp(222): warning C4715: Fish::Get_health: значение возвращается не при всех путях выполнения
   8.Fish.vcxproj -> C:\програми\OOP Home work\8.Fish\x64\Debug\8.Fish.exe

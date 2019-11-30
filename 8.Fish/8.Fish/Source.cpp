@@ -20,11 +20,12 @@
 #include <windows.h>
 #include "Fish.h"
 
-char** Fish::ocean;
+string ** Fish::ocean;
 int Fish::plancton_x[3];
 int Fish::plancton_y[3];
 int Fish::size_x;
 int Fish::size_y;
+string Fish::fish_sumbol= "<x";
 
 
  int Fish::fish_count=0;
@@ -52,11 +53,11 @@ int main() {
 	two.Find_plancton(two.Get_x(), two.Get_y());
 	tree.Find_plancton(two.Get_x(), two.Get_y());
 
-	for (; choise<30;) {
+	for (; choise<100;) {
 		system("cls");
 		cout << "Enter 0 for exit " << endl;
 		cout << "Health "<< first .Get_number_fish()<<" fish : "<<first.Get_health() << endl;
-		cout << "Health "<<two.Get_number_fish()<<" fish : "<<two.Get_health() << endl;
+		cout << "Health "<<two.Get_number_fish()<<" fish : "<< two.Get_health() << endl;
 		cout << "Health "<< tree.Get_number_fish()<<" fish : "<< tree.Get_health() << endl;
 
 		Fish::Life_ocean();
