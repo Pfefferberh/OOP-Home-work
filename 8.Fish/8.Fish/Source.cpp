@@ -21,23 +21,39 @@
 #include "Fish.h"
 
 char Fish::ocean[10][12];
+int Fish::plancton_x[3];
+int Fish::plancton_y[3];
 
  int Fish::fish_count=0;
 int main() {
 	srand(unsigned(time(NULL)));
 	int choise = 1;
+	
+	
 	Fish first;
 	Fish two;
-	cout << "Enter 0 for exit " << endl;
+	Fish tree;
+	
+	Fish::Random_plancton();
+	Fish::Life_ocean();
+
+	first.Find_plancton(first.Get_x(), first.Get_y());
+	cout << "-------------------" << endl;
+	two.Find_plancton(two.Get_x(), two.Get_y());
+	tree.Find_plancton(two.Get_x(), two.Get_y());
+
 	for (; choise<25;) {
 		system("cls");
 		cout << "Enter 0 for exit " << endl;
 		cout << "Health "<< first .Get_number_fish()<<" fish : "<<first.Get_health() << endl;
 		cout << "Health "<<two.Get_number_fish()<<" fish : "<<two.Get_health() << endl;
+		cout << "Health "<< tree.Get_number_fish()<<" fish : "<< tree.Get_health() << endl;
 
 		Fish::Life_ocean();
-		first.Move_fish(first.Get_x(), first.Get_y());
-		two.Move_fish(two.Get_x(), two.Get_y());
+		first.Move_fish();
+		two.Move_fish();
+		tree.Move_fish();
+	
 		Fish::Show_ocean();
 		Sleep(500);
 		choise++;
