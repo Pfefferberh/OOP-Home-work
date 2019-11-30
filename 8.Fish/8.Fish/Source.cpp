@@ -20,15 +20,25 @@
 #include <windows.h>
 #include "Fish.h"
 
-char Fish::ocean[10][12];
+char** Fish::ocean;
 int Fish::plancton_x[3];
 int Fish::plancton_y[3];
+int Fish::size_x;
+int Fish::size_y;
+
 
  int Fish::fish_count=0;
 int main() {
 	srand(unsigned(time(NULL)));
 	int choise = 1;
-	
+	int size_x = 0;
+	int size_y = 0;
+	cout << "Enter the size vertucal for ocean window : ";
+	cin >> size_x;
+	cout << "Enter the size horuzontal for ocean window : ";
+	cin >> size_y;
+	Fish::Set_size(size_x, size_y);
+	Fish::Create_ocean();
 	
 	Fish first;
 	Fish two;
@@ -42,7 +52,7 @@ int main() {
 	two.Find_plancton(two.Get_x(), two.Get_y());
 	tree.Find_plancton(two.Get_x(), two.Get_y());
 
-	for (; choise<25;) {
+	for (; choise<30;) {
 		system("cls");
 		cout << "Enter 0 for exit " << endl;
 		cout << "Health "<< first .Get_number_fish()<<" fish : "<<first.Get_health() << endl;
@@ -61,7 +71,7 @@ int main() {
 
 	
 	
-
+	Fish::Delete_ocean();
 
 	system("pause");
 	return 0;

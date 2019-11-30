@@ -7,8 +7,12 @@ using namespace std;
 
 class Fish
 {
-	static char ocean[10][12];
+	static char **ocean;
 	static int fish_count;
+	static int plancton_x[3];
+	static int plancton_y[3];
+	static int size_x;
+	static int size_y;
 	int x;
 	int y;
 	int curse_x ;
@@ -16,8 +20,7 @@ class Fish
 	int health; 
 	int number_fish; 
 
-	static int plancton_x[3];
-	static int plancton_y[3];
+	
 
 	void Mind_random_fish();
 	
@@ -29,12 +32,15 @@ class Fish
 	
 public:
 	Fish();
+	static void Create_ocean();
+	static void Delete_ocean();
 	static void Life_ocean();
 	static void Show_ocean();
 	static void Random_plancton();
+	static void Set_size(int x,int y);
 
 	void Find_plancton(int x, int y);
-	void Find_plancton();
+	
 	
 	void Move_fish();
 
