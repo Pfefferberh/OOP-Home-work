@@ -21,13 +21,9 @@ class Fish
 	int health; 
 	int number_fish; 
 
-	
-
-	void Mind_random_fish();
-	
+	void Mind_random_fish();	
 	void Hunger_fish();
 	void Problem_move_fish();
-
 
 	static void Set_plancton(int x,int y);
 	
@@ -41,8 +37,6 @@ public:
 	static void Set_size(int x,int y);
 
 	void Find_plancton(int x, int y);
-	
-	
 	void Move_fish();
 
 	int Get_x();
@@ -50,6 +44,5 @@ public:
 	int Get_health();
 	int Get_number_fish();
 	
-
 	~Fish();
  };

@@ -25,7 +25,7 @@ int Fish::plancton_x[3];
 int Fish::plancton_y[3];
 int Fish::size_x;
 int Fish::size_y;
-string Fish::fish_sumbol= "<x";
+string Fish::fish_sumbol= ">(o)<";
 int Fish::fish_count = 0;
 
 int main() {
@@ -52,9 +52,8 @@ int main() {
 	two.Find_plancton(two.Get_x(), two.Get_y());
 	tree.Find_plancton(two.Get_x(), two.Get_y());
 
-	for (; choise<100;) {
+	for (; choise<150;choise++) {
 		system("cls");
-		cout << "Enter 0 for exit " << endl;
 		cout << "Health "<< first .Get_number_fish()<<" fish : "<<first.Get_health() << endl;
 		cout << "Health "<<two.Get_number_fish()<<" fish : "<< two.Get_health() << endl;
 		cout << "Health "<< tree.Get_number_fish()<<" fish : "<< tree.Get_health() << endl;
@@ -66,11 +65,8 @@ int main() {
 	
 		Fish::Show_ocean();
 		//Sleep(50);
-		choise++;
 	}
 
-	
-	
 	Fish::Delete_ocean();
 
 	system("pause");
