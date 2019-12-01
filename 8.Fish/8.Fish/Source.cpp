@@ -26,9 +26,8 @@ int Fish::plancton_y[3];
 int Fish::size_x;
 int Fish::size_y;
 string Fish::fish_sumbol= "<x";
+int Fish::fish_count = 0;
 
-
- int Fish::fish_count=0;
 int main() {
 	srand(unsigned(time(NULL)));
 	int choise = 1;
@@ -66,7 +65,7 @@ int main() {
 		tree.Move_fish();
 	
 		Fish::Show_ocean();
-		Sleep(500);
+		//Sleep(50);
 		choise++;
 	}
 

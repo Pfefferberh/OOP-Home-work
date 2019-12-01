@@ -2,19 +2,19 @@
 
 void Fish::Mind_random_fish()
 {
-	bool cur_x = rand() % 3;
-	bool cur_y = rand() % 3;
+	bool cur_x = rand() % 2;
+	bool cur_y = rand() % 2;
 	if (cur_x == true) {
-		this->curse_x++;
+		this->x++;
 	}
 	else {
-		this->curse_x--;
+		this->x--;
 	}
 	if (cur_y == true) {
-		this->curse_y++;
+		this->y++;
 	}
 	else {
-		this->curse_y--;
+		this->y--;
 	}
 }
 
@@ -62,7 +62,7 @@ void Fish::Find_plancton(int x, int y)
 	int memb_x=0;
 	int memb_y=0;
 	int memb=0;
-	int min=300;
+	int min=10000;
 
 	for (int i = 0; i < size_x; i++) {
 		for (int j = 0; j < size_x; j++) {
@@ -101,8 +101,8 @@ void Fish::Problem_move_fish()
 void Fish::Random_plancton()
 {
 	for (int i = 0; i < 3; i++) {
-		plancton_x[i]= rand() % size_x-1;
-		plancton_y[i]= rand() % size_y-1;
+		plancton_x[i]= rand() % (size_x-2)+1;
+		plancton_y[i]= rand() % (size_y-2)+1;
 	}
 }
 
@@ -114,8 +114,8 @@ void Fish::Set_size(int x, int y)
 
 void Fish::Set_plancton(int x, int y)
 {
-	plancton_x[x] = rand() % size_x-2;
-	plancton_y[y] = rand() % size_y-2;
+	plancton_x[x] = rand() % (size_x-2);
+	plancton_y[y] = rand() % (size_y-2);
 }
 
 
@@ -228,15 +228,11 @@ int Fish::Get_number_fish()
 
 void Fish::Move_fish()
 {
-	//this->Find_plancton();
-
-	
-	this->health--;
-	
+	this->Find_plancton(Get_x(), Get_y());
 	if (this->health > 0) {
 		this->Hunger_fish();
 		this->Problem_move_fish();
-		if (ocean[this->x][this->y] != "* " && ocean[this->x][this->y] != fish_sumbol) {
+		if (ocean[this->x][this->y] != "* " ) {
 			ocean[this->x][this->y] = fish_sumbol;
 		}
 		if (ocean[this->x][this->y] ==  "* " && ocean[this->x][this->y] != fish_sumbol) {
@@ -245,22 +241,18 @@ void Fish::Move_fish()
 			if (this->health <= 10) {
 				this->Find_plancton(Get_x(), Get_y());
 			}
-			if (this->health > 10) {
+			else {
 				this->Mind_random_fish();
 			}
 		}
-		if (ocean[this->x][this->y] == fish_sumbol) {
-			if (this->health <= 10) {
+		else  {
 				this->Find_plancton(Get_x(), Get_y());
-			}
-			if(this->health > 10) {
-				this->Mind_random_fish();
-			}
 		}
 	}
-	if (this->health < 0) {
+	if (this->health <= 0) {
 		ocean[this->x][this->y] = "+ ";
 	}
+	this->health--;
 }
 
 
