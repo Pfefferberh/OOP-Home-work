@@ -25,7 +25,7 @@ int Fish::plancton_x[3];
 int Fish::plancton_y[3];
 int Fish::size_x;
 int Fish::size_y;
-string Fish::fish_sumbol= ">(o)<";
+string Fish::fish_sumbol= "sergey";
 int Fish::fish_count = 0;
 
 int main() {
