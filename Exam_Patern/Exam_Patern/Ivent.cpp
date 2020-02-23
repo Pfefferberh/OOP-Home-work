@@ -41,10 +41,21 @@ void Ivent::Set_priority()
 	}
 }
 
+void Ivent::Set_priority(string priority)
+{
+	this->priority = priority;
+}
+
+
 void Ivent::Set_teg()
 {
 	cout << "Enter teg with # : ";
 	cin >> this->teg;
+}
+
+void Ivent::Set_teg(string teg)
+{
+	this->teg = teg;
 }
 
 void Ivent::Change_ivent()
@@ -105,3 +116,43 @@ string Ivent::Get_teg()
 {
 	return this->teg;
 }
+
+void Ivent::Save_file()
+{
+	ofstream myfile_two("Save.txt",ios::app);
+	if (myfile_two.is_open())
+	{
+		myfile_two << this->Get_text_ivent()<<endl;
+		myfile_two << this->Get_data() << endl;
+		myfile_two << this->Get_priory() << endl;
+		myfile_two << this->Get_teg() << endl;
+	}
+	else cout << "Unable to open file";
+	myfile_two.close();
+}
+
+//void Ivent::Load_file()
+//{
+//	string temp;
+//	ifstream myfile_two("Save.txt");
+//	if (myfile_two.is_open())
+//	{
+//		getline(myfile_two,temp);
+//		this->Set_text_ivent(temp);
+//		getline(myfile_two, temp);
+//		this->Set_data(temp);
+//		getline(myfile_two, this->priority);
+//		getline(myfile_two, this->teg);
+//	}
+//	else cout << "Unable to open file";
+//	myfile_two.close();
+//}
+
+void Ivent::Show()
+{
+	cout<< this->Get_text_ivent() << endl;
+	cout<< this->Get_data() << endl;
+	cout<< this->Get_priory() << endl;
+	cout<< this->Get_teg() << endl;
+}
+

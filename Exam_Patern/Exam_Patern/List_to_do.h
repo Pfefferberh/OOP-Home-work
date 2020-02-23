@@ -20,7 +20,40 @@ public:
 	void Seach_data();
 	void Seach_priorety();
 	void Seach_teg();
-	/*void Get_list();
-	void Sending();*/
-	class Mailling_list;
+	void Save_list();
+	void Load_list();
+	void Sending();
+	void Show_all();
+	
+	 class Mailling_list {
+	public:
+		virtual ~Mailling_list() {}
+		virtual void Send_list()const = 0;
+	};
+	void mailing_list(Mailling_list* component);
+	
+};
+
+class Mailling_list_send :public List_to_do::Mailling_list 
+{
+protected:
+	Mailling_list* list_;
+public:
+	Mailling_list_send() {};
+	Mailling_list_send(Mailling_list* list) : list_(list) {};
+	void Send_list()const override;
+};
+
+class Facebook :public Mailling_list_send {
+public:
+	Facebook() {};
+	Facebook(Mailling_list* list) : Mailling_list_send(list) {};
+		void Send_list()const  override;
+};
+
+class Telegram :public Mailling_list_send {
+public:
+	Telegram() {};
+	Telegram(Mailling_list* list) : Mailling_list_send(list) {};
+	void Send_list()const  override;
 };
