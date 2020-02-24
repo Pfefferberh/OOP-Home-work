@@ -10,12 +10,14 @@ List_to_do* List_to_do::GetInstance()
 
 void List_to_do::Create_ivent()
 {
+	cout << "			ADD IVENT" << endl;
 	this->list_ivent.push_back(Ivent());
 }
 
 void List_to_do::Delete_ivent()
 {
-	cout << " Delete ivent" << endl;
+	j = 0;
+	cout << "				DELETE IVENT" << endl;
 	cout << "Enter date : ";
 	cin >> member;
 	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
@@ -28,10 +30,27 @@ void List_to_do::Delete_ivent()
 
 }
 
+bool List_to_do::Seach_text()
+{
+	j = 0;
+	cout << "			 SEARCH of text " << endl;
+	cout << "Enter text : ";
+	cin >> member;
+	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
+		if (member == this->list_ivent[j].Get_text_ivent()) {
+			cout << "FIND :  " << this->list_ivent[j].Get_text_ivent() << endl;
+			return true;
+		}
+		j++;
+	}
+	return false;
+}
+
 
 void List_to_do::Seach_data()
 {
-	cout << "          SEARCH of date ";
+	j = 0;
+	cout << "			 SEARCH of date " << endl;
 	cout << "Enter date : ";
 	cin >> member;
 	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
@@ -45,7 +64,8 @@ void List_to_do::Seach_data()
 
 void List_to_do::Seach_priorety()
 {
-	cout << "          SEARCH of priority ";
+	j = 0;
+	cout << "			 SEARCH of priority " << endl;
 	cout << "Enter priority Max or Midle or Min or draft : ";
 	cin >> member;
 	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
@@ -59,7 +79,8 @@ void List_to_do::Seach_priorety()
 
 void List_to_do::Seach_teg()
 {
-	cout << "          SEARCH of teg ";
+	j = 0;
+	cout << "			 SEARCH of teg " << endl;
 	cout << "Enter teg with # : ";
 	cin >> member;
 	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
@@ -73,10 +94,12 @@ void List_to_do::Seach_teg()
 
 void List_to_do::Save_list()
 {
+	j = 0;
 	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
 		this->list_ivent[j].Save_file();
 		j++;
 	}
+	cout << "			 SAVED " << endl;
 }
 
 void List_to_do::Load_list()
@@ -102,8 +125,9 @@ void List_to_do::Load_list()
 		this->list_ivent.pop_back();
 	}
 
-	else cout << "Unable to open file";
+	else cout << "Unable to open file" << endl;
 	myfile_two.close();
+	cout << "			  LOADED " << endl;
 }
 
 void List_to_do::Sending()
@@ -111,6 +135,7 @@ void List_to_do::Sending()
 	Mailling_list* to_somebody = new Mailling_list_send();
 	Mailling_list* facebook = new Facebook(to_somebody);
 	Mailling_list* telegram = new Telegram(facebook);
+	cout << "			 MAILLING LISTS " << endl;
 		cout << "Choise whom sending : " << endl;
 		cout << "1 - to somebody " << endl;
 		cout << "2 - to somebody & facebook " << endl;
@@ -138,6 +163,8 @@ void List_to_do::Sending()
 
 void List_to_do::Show_all()
 {
+	j = 0;
+	cout << "		    Show all ivent " << endl;
 	for (auto i = this->list_ivent.begin(); i != this->list_ivent.end(); ++i) {
 		cout << "          " << j + 1 << endl;
 		this->list_ivent[j].Show();
@@ -145,11 +172,24 @@ void List_to_do::Show_all()
 	}
 }
 
+void List_to_do::Editing()
+{
+	this->Show_all();
+	cout << "Enter number the ivent : ";
+	cin >> j;
+	j--;
+	if (j < this->list_ivent.size()) {	
+		this->list_ivent[j].Change_ivent();
+	}
+	else {
+		cout << "Ivent not to be  " << endl;
+	}
+}
+
 void List_to_do::mailing_list(Mailling_list* component)
 {
  component->Send_list();
 }
-
 
 void  Mailling_list_send:: Send_list() const
 {

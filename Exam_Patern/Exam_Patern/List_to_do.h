@@ -6,8 +6,11 @@ class List_to_do
 {
 	string member;
 	int j = 0;
+	int count = 0;
 protected: 
-	List_to_do() { this->Create_ivent(); }
+	List_to_do() {
+			this->Create_ivent();
+	}
 	vector <Ivent> list_ivent;
 	static List_to_do* list_to_do;
 public:
@@ -17,6 +20,7 @@ public:
 
 	void Create_ivent();
 	void Delete_ivent();
+	bool Seach_text();
 	void Seach_data();
 	void Seach_priorety();
 	void Seach_teg();
@@ -24,6 +28,8 @@ public:
 	void Load_list();
 	void Sending();
 	void Show_all();
+	void Editing();
+
 	
 	 class Mailling_list {
 	public:

@@ -150,9 +150,9 @@ void Ivent::Save_file()
 
 void Ivent::Show()
 {
-	cout<< this->Get_text_ivent() << endl;
-	cout<< this->Get_data() << endl;
-	cout<< this->Get_priory() << endl;
-	cout<< this->Get_teg() << endl;
+	cout<< "Text ivent : "<<this->Get_text_ivent() << endl;
+	cout<< "Date       : "<<this->Get_data() << endl;
+	cout<< "Priority   : "<<this->Get_priory() << endl;
+	cout<< "TEG	   : "<<this->Get_teg() << endl;
 }
 
